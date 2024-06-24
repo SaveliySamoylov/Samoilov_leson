@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Samoilov.Models;
+using Microsoft.AspNetCore.Mvc;
 using Samoilov.Models;
 using System.Diagnostics;
 
-namespace Samoilov.Controllers
+namespace Di_25.Controllers
 {
     public class HomeController : Controller
     {
@@ -13,10 +14,6 @@ namespace Samoilov.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         public IActionResult Privacy()
         {
@@ -28,5 +25,24 @@ namespace Samoilov.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public String index(int a)
+        {
+            var answer = "";
+            for (int i = 0; i < ProductList.products.Count; i++)
+            {
+                answer += ProductList.products[i].Id;
+                answer += "\n";
+                answer += ProductList.products[i].Name;
+                answer += "\n";
+                answer += ProductList.products[i].Price;
+                answer += "\n";
+                answer += ProductList.products[i].Description;
+                answer += "\n";
+                answer += "\n";
+            }
+            return answer;
+        }
     }
 }
+//https://localhost:7124/Home/Index
